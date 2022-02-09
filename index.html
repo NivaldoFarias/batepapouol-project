@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projeto 5 - Bate Papo UOL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="shortcut icon" href="dist/img/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="dist/img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="dist/css/reset.css" />
@@ -16,18 +22,66 @@
       <img src="/dist/img/batepapooul-logo.png" alt="Logo Bate Papo UOL" />
 
       <div class="login-screen__container">
-        <input type="text" placeholder="Digite seu nome" name="fname" required />
-
+        <input
+          type="text"
+          placeholder="Digite seu nome"
+          name="fname"
+          required
+        />
         <button id="login-btn">Entrar</button>
       </div>
     </div>
+    <header class="hidden">
+      <img src="/dist/img/batepapooul-logo.png" alt="Logo Bate Papo UOL" />
+      <ion-icon name="people" id="sidebar-btn"></ion-icon>
+    </header>
+    <main class="hidden">
+      <p class="user-statuslog">
+        <span>(09:21:45)</span> <strong>João</strong> entra na sala...
+      </p>
+      <p class="user-text">
+        <span>(09:22:28)</span> <strong>João</strong> para
+        <strong>Todos</strong>: Bom dia
+      </p>
+      <p class="user-text">
+        <span>(09:22:38)</span> <strong>Maria</strong> para
+        <strong>João</strong>: Oi João :)
+      </p>
+      <p class="user-privatemsg">
+        <span>(09:22:48)</span> <strong>João</strong> reservadamente para
+        <strong>Maria</strong>: Oi gatinha quer tc?
+      </p>
+      <p class="user-statuslog">
+        <span>(09:22:58)</span> <strong>Maria</strong> sai da sala...
+      </p>
+    </main>
+    <aside class="hidden">
+        <p>Escolha um contato para enviar mensagem:</p>
+        <section class="contact-selection">
+          <div class="opt">Todos</div>
+          <div class="opt">João</div>
+          <div class="opt">Maria</div>
+        </section>
+        <p>Escolha a visibilidade:</p>
+        <section class="visibility-selection">
+          <div class="opt">Público</div>
+          <div class="opt">Privado</div>
+        </section>
+    </aside>
+    <footer class="hidden">
+      <input type="text" placeholder="Escreva aqui..." name="fname" />
+      <ion-icon name="paper-plane-outline"></ion-icon>
+    </footer>
 
-    <header class="hidden"></header>
-    <main class="hidden"></main>
-    <aside class="hidden"></aside>
-    <footer class="hidden"></footer>
-
-
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

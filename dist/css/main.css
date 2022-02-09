@@ -3,10 +3,167 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  outline: none !important;
 }
 
 body {
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f3f3f3;
+}
+
+header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  height: 12vh;
+  width: 100%;
+  padding: 2vh 8vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  -webkit-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+header img {
+  width: 23%;
+}
+
+header ion-icon {
+  font-size: 45px;
+}
+
+main {
+  margin-top: 10vh;
+  height: 100%;
+  width: 100%;
+  padding: 5vh 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+p {
+  height: auto;
+  width: 100%;
+  padding: 5px 10px;
+  margin-top: 3px;
+  display: inline-block;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  border-radius: 2px;
   background-color: white;
+}
+
+p strong {
+  font-weight: 700;
+}
+
+p span {
+  font-size: 13px;
+  font-style: italic;
+  color: #969696;
+}
+
+p.user-statuslog {
+  background-color: gainsboro;
+}
+
+p.user-privatemsg {
+  background-color: #ffdede;
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1;
+  height: 12vh;
+  width: 100%;
+  padding: 2vh 8vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  -webkit-box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+footer input[type="text"] {
+  padding: 12px 0;
+  width: 80%;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: italic;
+  color: black;
+  display: inline-block;
+  border: none;
+}
+
+footer ion-icon {
+  font-size: 35px;
+}
+
+aside {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  padding-top: 60px;
+  overflow-x: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: #111;
+}
+
+aside .opt {
+  display: block;
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+aside .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  margin-left: 50px;
+  font-size: 36px;
+}
+
+*.hidden {
+  display: none !important;
 }
 
 .login-screen {
@@ -45,10 +202,12 @@ body {
           flex-direction: column;
 }
 
-.login-screen__container input[type=text] {
-  width: 100%;
+.login-screen__container input[type="text"] {
   padding: 12px 20px;
   margin: 8px 0;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  color: black;
   display: inline-block;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -65,6 +224,11 @@ body {
   color: white;
 }
 
-.hidden {
-  display: none !important;
+@media screen and (max-height: 450px) {
+  aside {
+    padding-top: 15px;
+  }
+  aside .iot {
+    font-size: 18px;
+  }
 }

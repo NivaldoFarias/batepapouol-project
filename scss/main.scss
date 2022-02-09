@@ -1,9 +1,152 @@
 @import "./resets";
 
 body {
-  background-color: white;
+  position: relative;
+
+  font-family: "Roboto", sans-serif;
+
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(243, 243, 243, 1);
 }
-.login-screen{
+header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+
+  height: 12vh;
+  width: 100%;
+  padding: 2vh 8vw;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+
+  img {
+    width: 23%;
+  }
+  ion-icon {
+    font-size: 45px;
+  }
+}
+main {
+  margin-top: 10vh;
+  height: 100%;
+  width: 100%;
+  padding: 5vh 0;
+
+  display: flex;
+  flex-direction: column;
+}
+p {
+  height: auto;
+  width: 100%;
+  padding: 5px 10px;
+  margin-top: 3px;
+
+  display: inline-block;
+  align-items: center;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+
+  border-radius: 2px;
+
+  background-color: rgba(255, 255, 255, 1);
+
+  strong {
+    font-weight: 700;
+  }
+  span {
+    font-size: 13px;
+    font-style: italic;
+    color: rgb(150, 150, 150);
+  }
+  &.user-statuslog {
+    background-color: rgba(220, 220, 220, 1);
+  }
+  &.user-privatemsg {
+    background-color: rgba(255, 222, 222, 1);
+  }
+}
+footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1;
+
+  height: 12vh;
+  width: 100%;
+  padding: 2vh 8vw;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+
+  input[type="text"] {
+    padding: 12px 0;
+    width: 80%;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    color: black;
+
+    display: inline-block;
+    border: none;
+  }
+  ion-icon {
+    font-size: 35px;
+  }
+}
+aside {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  width: 0;
+  padding-top: 60px;
+
+  overflow-x: hidden;
+  transition: 0.5s;
+
+  background-color: #111;
+
+  .opt {
+    display: block;
+    padding: 8px 8px 8px 32px;
+
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+
+    transition: 0.3s;
+  }
+  .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+  
+    margin-left: 50px;
+  
+    font-size: 36px;
+  }
+}
+*.hidden {
+  display: none !important;
+}
+.login-screen {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,7 +157,6 @@ body {
   height: 100vh;
   width: 100vw;
 
-
   img {
     width: 60%;
   }
@@ -23,10 +165,15 @@ body {
     align-items: center;
     flex-direction: column;
 
-    input[type=text]{
-      width: 100%;
+    input[type="text"] {
       padding: 12px 20px;
       margin: 8px 0;
+
+      width: 100%;
+
+      font-family: "Roboto", sans-serif;
+      color: black;
+
       display: inline-block;
       border-radius: 4px;
       border: 1px solid #ccc;
@@ -35,7 +182,7 @@ body {
       padding: 14px 20px;
       margin: 8px 0;
       width: 50%;
-  
+
       border: none;
       cursor: pointer;
       border-radius: 4px;
@@ -44,6 +191,11 @@ body {
     }
   }
 }
-.hidden {
-  display: none !important;
+@media screen and (max-height: 450px) {
+  aside {
+    padding-top: 15px;
+  }
+  aside .iot {
+    font-size: 18px;
+  }
 }
