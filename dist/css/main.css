@@ -4,3 +4,67 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
+
+body {
+  background-color: white;
+}
+
+.login-screen {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 15vh 10vw 35vh 10vw;
+  height: 100vh;
+  width: 100vw;
+}
+
+.login-screen img {
+  width: 60%;
+}
+
+.login-screen__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.login-screen__container input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.login-screen__container button {
+  padding: 14px 20px;
+  margin: 8px 0;
+  width: 50%;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #a3a3a3;
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
