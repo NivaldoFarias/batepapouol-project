@@ -22,19 +22,19 @@
 <br />
 <div align="center">
   <a href="https://github.com/NivaldoFarias/projeto3-driveneats">
-    <img src="dist/img/batepapooul-logo.png" alt="Logo" width="150">
+    <img src="https://github.com/NivaldoFarias/projeto5-batepapouol/blob/main/dist/img/logo-uol-icon-512.png" alt="Logo" width="150">
   </a>
 
-<h3 align="center">Bate Papo UOL Project</h3>
+<h3 align="center">UOL Chat Project</h3>
   <h6 align="center">WIP</h6>
   <p align="center">
     Web Development Project using HTML, SCSS and JS
     <br />
-    <a href="https://github.com/NivaldoFarias/projeto2-driveneats/blob/main/dist/index.html"><strong>HTML code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/projeto5-batepapouol/blob/main/index.html"><strong>HTML code»</strong></a>
     -
-    <a href="https://github.com/NivaldoFarias/projeto2-driveneats/blob/main/scss/main.scss"><strong>SCSS code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/projeto5-batepapouol/blob/main/scss/main.scss"><strong>SCSS code»</strong></a>
     -
-    <a href="https://github.com/NivaldoFarias/projeto3-driveneats/blob/main/JS/script.js"><strong>JS code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/projeto5-batepapouol/blob/main/js/script.js"><strong>JS code»</strong></a>
 </div>
 
 <!-- ABOUT THE PROJECT -->
