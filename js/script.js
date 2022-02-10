@@ -4,16 +4,12 @@ const openSidebarButton = document.getElementById("sidebar-btn");
 const closeSidebarButton = document.getElementById("close-btn");
 const sidebarComplete = document.querySelector(".sidebar-complete");
 const mainGen = document.querySelector("main");
-/* let user = {
-  from: "",
-  to: "",
-  text: "",
-  type: "",
-  time: ""
-} */
 let allMessages = [];
+let interval = null;
+let nLoads = 0;
 
 btnInit();
+//window.onload = loadUpdate();
 
 function postUser() {
   const form = document.querySelector(".login-screen__container");
@@ -79,12 +75,12 @@ function renderAllMessages() {
     if (allMessages[i].type === "status") {
       mainGen.innerHTML += `
       <p class="user-statuslog">
-        <span>(${allMessages[i].time}</span> <strong>${allMessages[i].from}</strong> ${allMessages[i].text}
+        <span>(${allMessages[i].time})</span> <strong>${allMessages[i].from}</strong> ${allMessages[i].text}
       </p>`;
     } else if (allMessages[i].type === "private_message") {
       mainGen.innerHTML += `
       <p class="user-privatemsg">
-        <span>${allMessages[i].time}</span> <strong>${allMessages[i].from}</strong> reservadamente para
+        <span>(${allMessages[i].time})</span> <strong>${allMessages[i].from}</strong> reservadamente para
         <strong>${allMessages[i].to}</strong>: ${allMessages[i].text}
       </p>`;
     } else if (allMessages[i].type === "message") {
@@ -95,10 +91,27 @@ function renderAllMessages() {
       </p>`;
     }
   }
+  nLoads++;
+
+  const childElementTmp = mainGen.lastChild;
+  console.log(`
+    prevLastElement = ${childElementTmp.innerText}
+  `);
+  scrollDownLastMsg(childElementTmp);
 }
-/* 0:
-from: "aasd"
-text: "sai da sala..."
-time: "03:15:15"
-to: "Todos"
-type: "status" */
+function scrollDownLastMsg(prevLastElement) {
+  const lastElement = mainGen.lastChild;
+  console.log(`
+    lastElement = ${lastElement.innerText}
+    prevLastElement = ${prevLastElement.innerText}
+  `);
+
+  if (lastElement !== prevLastElement ||
+      nLoads === 1
+  ){
+    lastElement.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+}
+function loadUpdate() {
+  interval = setInterval(getData, 3000);
+}

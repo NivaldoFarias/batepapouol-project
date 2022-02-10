@@ -60,6 +60,7 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   overflow-y: scroll;
+  overflow-x: hidden;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
