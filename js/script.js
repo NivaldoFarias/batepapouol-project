@@ -1,6 +1,8 @@
-const sidebar = document.querySelector('aside');
+const sidebar = document.querySelector("aside");
 const loginButton = document.getElementById("login-btn");
-const sidebarButton = document.getElementById("sidebar-btn");
+const sidebarOpenButton = document.getElementById("sidebar-btn");
+const sidebarCloseButton = document.getElementById("close-btn");
+const sidebarComplete = document.querySelector(".sidebar-complete");
 
 btnInit();
 
@@ -20,20 +22,30 @@ function secondScreen() {
     element.classList.remove("hidden");
   });
 }
-function toggleSidebar() {
-  if (sidebar.style.width === "0") {
-    sidebar.style.width = "250px";
-  }
-  else {
-    sidebar.style.width = "0";
-  }
+function openSidebar() {
+  sidebar.style.width = "70vw";
+  sidebarComplete.style.width = "30vw";
 }
-function btnInit(){
+function closeSidebar() {
+  sidebar.style.width = "0";
+  sidebarComplete.style.width = "0";
+}
+function btnInit() {
   loginButton.addEventListener("click", () => {
     postUser();
     secondScreen();
   });
-  sidebarButton.addEventListener("click", () => {
-    toggleSidebar();
+  sidebarOpenButton.addEventListener("click", () => {
+    if (!sidebarOpenButton.classList.contains("disabled")) {
+      openSidebar();
+      toggleDisable(sidebarOpenButton);
+    }
   });
+  sidebarCloseButton.addEventListener("click", () => {
+    closeSidebar();
+    toggleDisable(sidebarOpenButton);
+  });
+}
+function toggleDisable(element){
+  element.classList.toggle('disabled');
 }

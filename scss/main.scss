@@ -1,13 +1,15 @@
 @import "./resets";
 
 body {
-  position: relative;
+  position: absolute;
 
   font-family: "Roboto", sans-serif;
 
   height: 100vh;
   width: 100vw;
+
   background-color: rgba(243, 243, 243, 1);
+  transition: background-color .5s;
 }
 header {
   position: fixed;
@@ -35,43 +37,44 @@ header {
 }
 main {
   margin-top: 10vh;
-  height: 100%;
+  height: auto;
   width: 100%;
   padding: 5vh 0;
 
   display: flex;
   flex-direction: column;
-}
-p {
-  height: auto;
-  width: 100%;
-  padding: 5px 10px;
-  margin-top: 3px;
 
-  display: inline-block;
-  align-items: center;
+  p {
+    height: auto;
+    width: 100%;
+    padding: 5px 10px;
+    margin-top: 3px;
 
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
+    display: inline-block;
+    align-items: center;
 
-  border-radius: 2px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
 
-  background-color: rgba(255, 255, 255, 1);
+    border-radius: 2px;
 
-  strong {
-    font-weight: 700;
-  }
-  span {
-    font-size: 13px;
-    font-style: italic;
-    color: rgb(150, 150, 150);
-  }
-  &.user-statuslog {
-    background-color: rgba(220, 220, 220, 1);
-  }
-  &.user-privatemsg {
-    background-color: rgba(255, 222, 222, 1);
+    background-color: rgba(255, 255, 255, 1);
+
+    strong {
+      font-weight: 700;
+    }
+    span {
+      font-size: 13px;
+      font-style: italic;
+      color: rgb(150, 150, 150);
+    }
+    &.user-statuslog {
+      background-color: rgba(220, 220, 220, 1);
+    }
+    &.user-privatemsg {
+      background-color: rgba(255, 222, 222, 1);
+    }
   }
 }
 footer {
@@ -110,9 +113,9 @@ footer {
 }
 aside {
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   top: 0;
-  left: 0;
+  right: 0;
 
   height: 100%;
   width: 0;
@@ -120,6 +123,7 @@ aside {
 
   overflow-x: hidden;
   transition: 0.5s;
+  transition-timing-function: ease-in;
 
   background-color: #111;
 
@@ -133,15 +137,47 @@ aside {
 
     transition: 0.3s;
   }
-  .closebtn {
+  #close-btn {
     position: absolute;
     top: 0;
     right: 25px;
-  
+
     margin-left: 50px;
-  
+
     font-size: 36px;
   }
+}
+.sidebar-complete {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  right: 70vw;
+
+  height: 100vh;
+  width: 0;
+  padding-top: 60px;
+
+  overflow-x: hidden;
+  transition-delay: 0.5s;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  background-color: rgba(0,0,0,0.6);
+}
+.sidebar-complete.disabled {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  right: 70vw;
+
+  height: 100vh;
+  width: 0;
+  padding-top: 60px;
+
+  overflow-x: hidden;
+  transition-delay: 0.5s;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  background-color: rgba(0,0,0,0.6);
 }
 *.hidden {
   display: none !important;
