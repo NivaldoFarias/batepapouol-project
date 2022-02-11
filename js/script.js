@@ -8,9 +8,9 @@ let tmpMessages = null;
 let allMessages = [];
 let interval = null;
 let firstLoad = true;
+let lastMsgTime = null;
 
 btnInit();
-//window.onload = loadUpdate();
 
 function postUser() {
   const form = document.querySelector(".login-screen__container");
@@ -33,6 +33,7 @@ function btnInit() {
     postUser();
     getData();
     secondScreen();
+    loadUpdate();
   });
 
   openSidebarButton.addEventListener("click", () => {
@@ -99,10 +100,19 @@ function renderMessages() {
     allMessages.forEach(LOADMESSAGES); //declaration: refer to line 94
     firstLoad = false;
   } else {
-    let intersection = allMessages.filter((x) => tmpMessages.includes(x));
+    let difference = tmpMessages.filter(function (element, index) {
+      return element.time !== allMessages[index].time;
+    });
 
-    if (intersection.length >= 1) {
-      renderNewMessages(intersection);
+    console.log(`
+      ${allMessages[allMessages.length - 1].time},
+      ${tmpMessages[allMessages.length - 1].time},
+      ${difference.length}
+    `);
+
+    if (difference.length >= 1) {
+      console.log("Nova Mensagem(ns)");
+      renderNewMessages(difference);
     }
   }
 }
@@ -119,15 +129,9 @@ const LOADMESSAGES = (element) => {
   const msgCollection = document.querySelectorAll("main p");
   const index = msgCollection.length - 1;
 
-  console.log(`
-    ${mainGen[index]}
-    ${mainGen.length}
-    ${msgCollection}
-    ${allMessages.length}
-  `);
   if (element.type === "status") {
     msgCollection[index].insertAdjacentHTML(
-      'afterend',
+      "afterend",
       `
         <p class="user-statuslog">
           <span>(${element.time})</span>
@@ -136,7 +140,7 @@ const LOADMESSAGES = (element) => {
     );
   } else if (element.type === "private_message") {
     msgCollection[index].insertAdjacentHTML(
-      'afterend',
+      "afterend",
       `
         <p class="user-privatemsg">
           <span>(${element.time})</span> <strong>${element.from}</strong> reservadamente para
@@ -145,7 +149,7 @@ const LOADMESSAGES = (element) => {
     );
   } else if (element.type === "message") {
     msgCollection[index].insertAdjacentHTML(
-      'afterend',
+      "afterend",
       `
         <p class="user-text">
           <span>(${element.time})</span> <strong>${element.from}</strong> para
