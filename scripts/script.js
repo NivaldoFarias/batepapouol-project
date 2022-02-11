@@ -173,6 +173,3 @@ const LOADMESSAGES = (element) => {
     );
   }
 };
-
-//lstELement = allMessages.lastElement;
-//console.log(beasts.indexOf(lstElement.time));
