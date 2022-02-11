@@ -4,9 +4,10 @@ const openSidebarButton = document.getElementById("sidebar-btn");
 const closeSidebarButton = document.getElementById("close-btn");
 const sidebarComplete = document.querySelector(".sidebar-complete");
 const mainGen = document.querySelector("main");
+let tmpMessages = null;
 let allMessages = [];
 let interval = null;
-let nLoads = 0;
+let firstLoad = true;
 
 btnInit();
 //window.onload = loadUpdate();
@@ -65,53 +66,91 @@ function getData() {
   console.log("Enviou a requisição");
 }
 function loadData(response) {
+  tmpMessages = allMessages;
   allMessages = response.data;
 
-  renderAllMessages();
+  renderMessages();
   /* renderAllUsers(); */
 }
-function renderAllMessages() {
-  for (let i = 0; i < allMessages.length; i++) {
-    if (allMessages[i].type === "status") {
-      mainGen.innerHTML += `
-      <p class="user-statuslog">
-        <span>(${allMessages[i].time})</span> <strong>${allMessages[i].from}</strong> ${allMessages[i].text}
-      </p>`;
-    } else if (allMessages[i].type === "private_message") {
-      mainGen.innerHTML += `
-      <p class="user-privatemsg">
-        <span>(${allMessages[i].time})</span> <strong>${allMessages[i].from}</strong> reservadamente para
-        <strong>${allMessages[i].to}</strong>: ${allMessages[i].text}
-      </p>`;
-    } else if (allMessages[i].type === "message") {
-      mainGen.innerHTML += `
-      <p class="user-text">
-        <span>(${allMessages[i].time})</span> <strong>${allMessages[i].from}</strong> para
-        <strong>${allMessages[i].to}</strong>: ${allMessages[i].text}
-      </p>`;
+function renderMessages() {
+  if (firstLoad) {
+    if (allMessages[0].type === "status") {
+      mainGen.innerHTML = `
+        <p class="user-statuslog">
+          <span>(${allMessages[0].time})</span>
+          <strong>${allMessages[0].from}</strong> ${allMessages[0].text}
+        </p>`;
+    } else if (allMessages[0].type === "private_message") {
+      mainGen.innerHTML = `
+        <p class="user-privatemsg">
+          <span>(${allMessages[0].time})</span> <strong>${allMessages[0].from}</strong> reservadamente para
+          <strong>${allMessages[0].to}</strong>: ${allMessages[0].text}
+        </p>`;
+    } else if (allMessages[0].type === "message") {
+      mainGen.innerHTML = `
+        <p class="user-text">
+          <span>(${allMessages[0].time})</span> <strong>${allMessages[0].from}</strong> para
+          <strong>${allMessages[0].to}</strong>: ${allMessages[0].text}
+        </p>`;
+    }
+    allMessages.splice(0, 1);
+    /* only prints all data once, and splices array, thus insertAdjacentHTML will not exhibit errors */
+
+    allMessages.forEach(LOADMESSAGES); //declaration: refer to line 94
+    firstLoad = false;
+  } else {
+    let intersection = allMessages.filter((x) => tmpMessages.includes(x));
+
+    if (intersection.length >= 1) {
+      renderNewMessages(intersection);
     }
   }
-  nLoads++;
-
-  const childElementTmp = mainGen.lastChild;
-  console.log(`
-    prevLastElement = ${childElementTmp.innerText}
-  `);
-  scrollDownLastMsg(childElementTmp);
 }
-function scrollDownLastMsg(prevLastElement) {
-  const lastElement = mainGen.lastChild;
-  console.log(`
-    lastElement = ${lastElement.innerText}
-    prevLastElement = ${prevLastElement.innerText}
-  `);
+function renderNewMessages(newMessages) {
+  newMessages.forEach(LOADMESSAGES); //declaration: refer to line 94
 
-  if (lastElement !== prevLastElement ||
-      nLoads === 1
-  ){
-    lastElement.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
+  const lastElement = mainGen.lastChild;
+  lastElement.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 function loadUpdate() {
   interval = setInterval(getData, 3000);
 }
+const LOADMESSAGES = (element) => {
+  const msgCollection = document.querySelectorAll("main p");
+  const index = msgCollection.length - 1;
+
+  console.log(`
+    ${mainGen[index]}
+    ${mainGen.length}
+    ${msgCollection}
+    ${allMessages.length}
+  `);
+  if (element.type === "status") {
+    msgCollection[index].insertAdjacentHTML(
+      'afterend',
+      `
+        <p class="user-statuslog">
+          <span>(${element.time})</span>
+          <strong>${element.from}</strong> ${element.text}
+        </p>`
+    );
+  } else if (element.type === "private_message") {
+    msgCollection[index].insertAdjacentHTML(
+      'afterend',
+      `
+        <p class="user-privatemsg">
+          <span>(${element.time})</span> <strong>${element.from}</strong> reservadamente para
+          <strong>${element.to}</strong>: ${element.text}
+        </p>`
+    );
+  } else if (element.type === "message") {
+    msgCollection[index].insertAdjacentHTML(
+      'afterend',
+      `
+        <p class="user-text">
+          <span>(${element.time})</span> <strong>${element.from}</strong> para
+          <strong>${element.to}</strong>: ${element.text}
+        </p>`
+    );
+  }
+};
