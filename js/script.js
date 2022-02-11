@@ -6,9 +6,11 @@ const sidebarComplete = document.querySelector(".sidebar-complete");
 const mainGen = document.querySelector("main");
 let tmpMessages = null;
 let allMessages = [];
+let newMessages = [];
 let interval = null;
 let firstLoad = true;
 let lastMsgTime = null;
+let indexOfLstMsg = null;
 
 btnInit();
 
@@ -67,7 +69,7 @@ function getData() {
   console.log("Enviou a requisição");
 }
 function loadData(response) {
-  tmpMessages = allMessages;
+  //tmpMessages = allMessages;
   allMessages = response.data;
 
   renderMessages();
@@ -98,26 +100,39 @@ function renderMessages() {
     /* only prints all data once, and splices array, thus insertAdjacentHTML will not exhibit errors */
 
     allMessages.forEach(LOADMESSAGES); //declaration: refer to line 94
+    lastMsgTime = allMessages[allMessages.length - 1].time;
     firstLoad = false;
   } else {
-    let difference = tmpMessages.filter(function (element, index) {
-      return element.time !== allMessages[index].time;
-    });
-
-    console.log(`
-      ${allMessages[allMessages.length - 1].time},
-      ${tmpMessages[allMessages.length - 1].time},
-      ${difference.length}
-    `);
-
-    if (difference.length >= 1) {
-      console.log("Nova Mensagem(ns)");
-      renderNewMessages(difference);
-    }
+    getNewMessages();
   }
 }
-function renderNewMessages(newMessages) {
+function getNewMessages() {
+  if (!(allMessages[allMessages.length - 1].time === lastMsgTime)) {
+    for (let i = allMessages.length - 1; i > 0; i--) {
+      if (allMessages[i].time === lastMsgTime) {
+        indexOfLstMsg = i;
+        break;
+      }
+    }
+    newMessages = allMessages.splice(
+      indexOfLstMsg + 1,
+      allMessages.length - indexOfLstMsg
+    );
+    renderNewMessages();
+  }
+}
+function renderNewMessages() {
+  console.log(` ANTES
+    newMessages.length = ${newMessages.length}, 
+    lastMsgTime = ${lastMsgTime}
+  `);
   newMessages.forEach(LOADMESSAGES); //declaration: refer to line 94
+  lastMsgTime = newMessages[newMessages.length - 1].time;
+  newMessages = [];
+  console.log(` DEPOIS
+    newMessages.length = ${newMessages.length}, 
+    lastMsgTime = ${lastMsgTime}
+  `);
 
   const lastElement = mainGen.lastChild;
   lastElement.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -158,3 +173,6 @@ const LOADMESSAGES = (element) => {
     );
   }
 };
+
+//lstELement = allMessages.lastElement;
+//console.log(beasts.indexOf(lstElement.time));
