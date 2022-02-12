@@ -4,7 +4,7 @@ const openSidebarButton = document.getElementById("sidebar-btn");
 const closeSidebarButton = document.getElementById("close-btn");
 const sidebarComplete = document.querySelector(".sidebar-complete");
 const mainGen = document.querySelector("main");
-let tmpMessages = null;
+const username = { name: null };
 let allMessages = [];
 let newMessages = [];
 let interval = null;
@@ -14,13 +14,6 @@ let indexOfLstMsg = null;
 
 btnInit();
 
-function postUser() {
-  const form = document.querySelector(".login-screen__container");
-  const username = form.children[0].value;
-  console.log(username);
-  //form.submit();
-  //POST
-}
 function secondScreen() {
   const loginScreen = document.querySelector(".login-screen");
   const secondScreen = Array.from(document.querySelectorAll(".hidden"));
@@ -33,11 +26,7 @@ function secondScreen() {
 function btnInit() {
   loginButton.addEventListener("click", () => {
     postUser();
-    getData();
-    secondScreen();
-    loadUpdate();
   });
-
   openSidebarButton.addEventListener("click", () => {
     if (!openSidebarButton.classList.contains("disabled")) {
       openSidebar();
@@ -48,6 +37,42 @@ function btnInit() {
     closeSidebar();
     toggleDisable(openSidebarButton);
   });
+}
+function postUser() {
+  username.name = document.querySelector("input").value;
+  const request = axios.post(
+    "https://mock-api.driven.com.br/api/v4/uol/participants",
+    username
+  );
+
+  request.then(responseProcess);
+  request.catch(errorProcess);
+}
+function responseProcess(response) {
+  console.log(`STATUS CODE: ${response}`);
+
+  secondScreen();
+  getData();
+  loadUpdate();
+  setInterval(statusUpdate, 5000);
+}
+function statusUpdate() {
+  const request = axios.post(
+    "https://mock-api.driven.com.br/api/v4/uol/status",
+    username
+  );
+  request.then(updateResponseProcess);
+  request.catch(errorProcess);
+}
+function updateResponseProcess() {
+  console.log(`STATUS UPDATE SUCCESSFUL`);
+}
+function errorProcess(error) {
+  console.log(error);
+  alert(`
+        !!ERROR ${error}!!
+    Por favor insira outro nome
+  `);
 }
 function openSidebar() {
   sidebar.style.width = "70vw";
@@ -65,33 +90,29 @@ function getData() {
     "https://mock-api.driven.com.br/api/v4/uol/messages"
   );
   promise.then(loadData);
-
-  console.log("Enviou a requisição");
 }
 function loadData(response) {
-  //tmpMessages = allMessages;
   allMessages = response.data;
 
   renderMessages();
-  /* renderAllUsers(); */
 }
 function renderMessages() {
   if (firstLoad) {
     if (allMessages[0].type === "status") {
       mainGen.innerHTML = `
-        <p class="user-statuslog">
+        <p class="user-${allMessages[0].type}">
           <span>(${allMessages[0].time})</span>
           <strong>${allMessages[0].from}</strong> ${allMessages[0].text}
         </p>`;
     } else if (allMessages[0].type === "private_message") {
       mainGen.innerHTML = `
-        <p class="user-privatemsg">
+        <p class="user-${allMessages[0].type}">
           <span>(${allMessages[0].time})</span> <strong>${allMessages[0].from}</strong> reservadamente para
           <strong>${allMessages[0].to}</strong>: ${allMessages[0].text}
         </p>`;
     } else if (allMessages[0].type === "message") {
       mainGen.innerHTML = `
-        <p class="user-text">
+        <p class="user-${allMessages[0].type}">
           <span>(${allMessages[0].time})</span> <strong>${allMessages[0].from}</strong> para
           <strong>${allMessages[0].to}</strong>: ${allMessages[0].text}
         </p>`;
@@ -122,17 +143,11 @@ function getNewMessages() {
   }
 }
 function renderNewMessages() {
-  console.log(` ANTES
-    newMessages.length = ${newMessages.length}, 
-    lastMsgTime = ${lastMsgTime}
-  `);
+  console.log(`MESSAGE UPDATE SUCCESSFUL`);
+
   newMessages.forEach(LOADMESSAGES); //declaration: refer to line 94
   lastMsgTime = newMessages[newMessages.length - 1].time;
   newMessages = [];
-  console.log(` DEPOIS
-    newMessages.length = ${newMessages.length}, 
-    lastMsgTime = ${lastMsgTime}
-  `);
 
   const lastElement = mainGen.lastChild;
   lastElement.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -148,7 +163,7 @@ const LOADMESSAGES = (element) => {
     msgCollection[index].insertAdjacentHTML(
       "afterend",
       `
-        <p class="user-statuslog">
+        <p class="user-${element.type}">
           <span>(${element.time})</span>
           <strong>${element.from}</strong> ${element.text}
         </p>`
@@ -157,7 +172,7 @@ const LOADMESSAGES = (element) => {
     msgCollection[index].insertAdjacentHTML(
       "afterend",
       `
-        <p class="user-privatemsg">
+        <p class="user-${element.type}">
           <span>(${element.time})</span> <strong>${element.from}</strong> reservadamente para
           <strong>${element.to}</strong>: ${element.text}
         </p>`
@@ -166,7 +181,7 @@ const LOADMESSAGES = (element) => {
     msgCollection[index].insertAdjacentHTML(
       "afterend",
       `
-        <p class="user-text">
+        <p class="user-${element.type}">
           <span>(${element.time})</span> <strong>${element.from}</strong> para
           <strong>${element.to}</strong>: ${element.text}
         </p>`

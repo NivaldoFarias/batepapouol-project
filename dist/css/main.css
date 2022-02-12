@@ -12,8 +12,8 @@ body {
   min-height: 100vh;
   width: 100vw;
   background-color: #f3f3f3;
-  -webkit-transition: background-color .5s;
-  transition: background-color .5s;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
 }
 
 header {
@@ -91,11 +91,11 @@ main p span {
   color: #969696;
 }
 
-main p.user-statuslog {
+main p.user-status {
   background-color: gainsboro;
 }
 
-main p.user-privatemsg {
+main p.user-private_message {
   background-color: #ffdede;
 }
 
@@ -188,6 +188,7 @@ aside #close-btn {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 15% 10% 35% 10%;
+  margin: 17% 0;
   height: 100%;
   width: 100%;
 }
@@ -207,6 +208,7 @@ aside #close-btn {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-top: 50px;
 }
 
 .login-screen__container input[type="text"] {
