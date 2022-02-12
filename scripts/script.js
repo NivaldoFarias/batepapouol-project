@@ -15,6 +15,7 @@ const userInputMsg = {
 };
 let allMessages = [];
 let newMessages = [];
+let onlineUsers = [];
 let interval = null;
 let firstLoad = true;
 let lastMsgTime = null;
@@ -79,6 +80,7 @@ function responseProcess(response) {
   secondScreen();
   getData();
   loadUpdate();
+  setInterval(getOnlineUsers, 10000);
   setInterval(statusUpdate, 5000);
 }
 function statusUpdate() {
@@ -195,7 +197,27 @@ function postMessage() {
 }
 function updateMessageProcess() {
   console.log(`MESSAGE SENT`);
-  document.querySelector("footer input").value = '';
+  document.querySelector("footer input").value = "";
+}
+function getOnlineUsers() {
+  const request = axios.get(
+    "https://mock-api.driven.com.br/api/v4/uol/participants"
+  );
+
+  request.then(listOnlineUsers);
+  request.catch(errorProcess);
+}
+function listOnlineUsers(response) {
+  let nUserNames = [];
+  onlineUsers = response.data;
+
+  for (let i = 0; i < onlineUsers.length; i++) {
+    nUserNames.push(onlineUsers[i].name);
+  }
+
+  console.log(`LIST OF USERS LOADED SUCCESSFULLY
+    CURRENTLY ONLINE: ${onlineUsers.length}, 
+    ${nUserNames}`);
 }
 const LOADMESSAGES = (element) => {
   const msgCollection = document.querySelectorAll("main p");
