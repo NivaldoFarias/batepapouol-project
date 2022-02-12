@@ -1,10 +1,16 @@
 const sidebar = document.querySelector("aside");
-const loginButton = document.getElementById("login-btn");
-const openSidebarButton = document.getElementById("sidebar-btn");
-const closeSidebarButton = document.getElementById("close-btn");
-const sidebarComplete = document.querySelector(".sidebar-complete");
+const loginBtn = document.getElementById("login-btn");
+const openSidebarBtn = document.getElementById("sidebar-btn");
+const closeSidebarBtn = document.getElementById("close-btn");
+const postMessageBtn = document.getElementById("post-message-btn");
 const mainGen = document.querySelector("main");
 const username = { name: null };
+const userInputMsg = {
+  from: "",
+  to: "",
+  text: "",
+  type: "",
+};
 let allMessages = [];
 let newMessages = [];
 let interval = null;
@@ -24,22 +30,27 @@ function secondScreen() {
   });
 }
 function btnInit() {
-  loginButton.addEventListener("click", () => {
+  loginBtn.addEventListener("click", () => {
     postUser();
   });
-  openSidebarButton.addEventListener("click", () => {
-    if (!openSidebarButton.classList.contains("disabled")) {
+  openSidebarBtn.addEventListener("click", () => {
+    if (!openSidebarBtn.classList.contains("disabled")) {
       openSidebar();
-      toggleDisable(openSidebarButton);
+      toggleDisable(openSidebarBtn);
     }
   });
-  closeSidebarButton.addEventListener("click", () => {
+  closeSidebarBtn.addEventListener("click", () => {
     closeSidebar();
-    toggleDisable(openSidebarButton);
+    toggleDisable(openSidebarBtn);
+  });
+  postMessageBtn.addEventListener("click", () => {
+    postMessage();
   });
 }
 function postUser() {
-  username.name = document.querySelector("input").value;
+  username.name = document.querySelector(
+    ".login-screen__container input"
+  ).value;
   const request = axios.post(
     "https://mock-api.driven.com.br/api/v4/uol/participants",
     username
@@ -154,6 +165,22 @@ function renderNewMessages() {
 }
 function loadUpdate() {
   interval = setInterval(getData, 3000);
+}
+function postMessage() {
+  userInputMsg.text = document.querySelector("footer input").value;
+  userInputMsg.from = username.name;
+  userInputMsg.to = "Todos";
+  userInputMsg.type = "message";
+
+  const request = axios.post(
+    "https://mock-api.driven.com.br/api/v4/uol/messages",
+    userInputMsg
+  );
+  request.then(updateMessageProcess);
+  request.catch(errorProcess);
+}
+function updateMessageProcess() {
+  console.log(`MESSAGE SENT`);
 }
 const LOADMESSAGES = (element) => {
   const msgCollection = document.querySelectorAll("main p");
