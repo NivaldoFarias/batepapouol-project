@@ -3,6 +3,8 @@ const loginBtn = document.getElementById("login-btn");
 const openSidebarBtn = document.getElementById("sidebar-btn");
 const closeSidebarBtn = document.getElementById("close-btn");
 const postMessageBtn = document.getElementById("post-message-btn");
+const loginEnterKey = document.getElementById("enter-key-login");
+const messageEnterKey = document.getElementById("enter-key-message");
 const mainGen = document.querySelector("main");
 const username = { name: null };
 const userInputMsg = {
@@ -45,6 +47,18 @@ function btnInit() {
   });
   postMessageBtn.addEventListener("click", () => {
     postMessage();
+  });
+  loginEnterKey.addEventListener("keyup", function (event) {
+    event.preventDefault();
+    if (event.key === "Enter") {
+      loginBtn.click();
+    }
+  });
+  messageEnterKey.addEventListener("keyup", function (event) {
+    event.preventDefault();
+    if (event.key === "Enter") {
+      postMessageBtn.click();
+    }
   });
 }
 function postUser() {
@@ -154,7 +168,7 @@ function getNewMessages() {
   }
 }
 function renderNewMessages() {
-  console.log(`MESSAGE UPDATE SUCCESSFUL`);
+  console.log(`MESSAGES LOADED SUCCESSFULLY`);
 
   newMessages.forEach(LOADMESSAGES); //declaration: refer to line 94
   lastMsgTime = newMessages[newMessages.length - 1].time;
@@ -181,6 +195,7 @@ function postMessage() {
 }
 function updateMessageProcess() {
   console.log(`MESSAGE SENT`);
+  document.querySelector("footer input").value = '';
 }
 const LOADMESSAGES = (element) => {
   const msgCollection = document.querySelectorAll("main p");

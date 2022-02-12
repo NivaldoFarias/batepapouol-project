@@ -26,6 +26,8 @@
 
       <div class="login-screen__container">
         <input
+          autocomplete="off"
+          id="enter-key-login"
           type="text"
           placeholder="Digite seu nome"
           name="fname"
@@ -54,7 +56,7 @@
       </section>
     </aside>
     <footer class="hidden">
-      <input type="text" placeholder="Escreva aqui..." name="fname" required />
+      <input maxlength="20" autocomplete="off" id="enter-key-message" type="text" placeholder="Escreva aqui..." name="fname" required/>
       <ion-icon name="paper-plane-outline" id="post-message-btn"></ion-icon>
     </footer>
 
