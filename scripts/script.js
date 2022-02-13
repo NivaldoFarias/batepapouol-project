@@ -14,13 +14,14 @@ const userInputMsg = {
   text: "",
   type: "",
 };
-let selectedUser = null;
-let selectedVisibility = null;
 let allMessages = [];
 let newMessages = [];
 let onlineUsers = [];
-let interval = null;
 let firstLoad = true;
+let contactOptions = null;
+let selectedUser = null;
+let selectedVisibility = null;
+let interval = null;
 let lastMsgTime = null;
 let indexOfLstMsg = null;
 
@@ -175,7 +176,7 @@ function getNewMessages() {
 function renderNewMessages() {
   console.log(`MESSAGES LOADED SUCCESSFULLY`);
 
-  newMessages.forEach(LOADMESSAGES); //declaration: refer to line 94
+  newMessages.forEach(LOADMESSAGES); //declaration set on script end
   lastMsgTime = newMessages[newMessages.length - 1].time;
   newMessages = [];
 
@@ -211,16 +212,14 @@ function getOnlineUsers() {
   request.catch(errorProcess);
 }
 function listOnlineUsers(response) {
-  let nUserNames = [];
-  onlineUsers = response.data;
-
   const contactSelection = document.getElementById("contact-selection");
   contactSelection.innerHTML = `
-    <div class="opt">
-      <ion-icon name="people"></ion-icon>
-      <p>Todos</p>
-    </div>
+  <div class="opt">
+  <ion-icon name="people"></ion-icon>
+  <p>Todos</p>
+  </div>
   `;
+  onlineUsers = response.data;
 
   onlineUsers.forEach((element) => {
     const usersCollection = document.querySelectorAll(
@@ -238,21 +237,37 @@ function listOnlineUsers(response) {
       `
     );
   });
+  contactOptions = document.querySelectorAll("#contact-selection .opt");
+  contactOptions.forEach((element) => {
+    element.addEventListener("click", () => {
+      selectUser(element);
+    });
+  });
 
+  let nUserNames = [];
   for (let i = 0; i < onlineUsers.length; i++) {
     nUserNames.push(onlineUsers[i].name);
   }
-
   console.log(`LIST OF USERS LOADED SUCCESSFULLY
     CURRENTLY ONLINE: ${onlineUsers.length}, 
     ${nUserNames}`);
 }
 function selectUser(element) {
-  if (!selectedUser){
+  if (!selectedUser) {
     selectedUser = element;
-    element.classList.add('selected');
+    toggleSelect(element);
+  } else if (selectedUser == element) {
+    selectedUser = null;
+    toggleSelect(element);
+  } else {
+    toggleSelect(selectedUser);
+    selectedUser = element;
+    toggleSelect(element);
   }
-} 
+}
+function toggleSelect(element) {
+  element.classList.toggle("selected");
+}
 const LOADMESSAGES = (element) => {
   const msgCollection = document.querySelectorAll("main p");
   const index = msgCollection.length - 1;
