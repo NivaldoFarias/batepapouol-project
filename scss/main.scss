@@ -183,8 +183,9 @@ section {
 *.hidden {
   display: none !important;
 }
-.selected {
+*.selected {
   background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
 }
 .login-screen {
   display: flex;
@@ -215,6 +216,7 @@ section {
 
       font-family: "Roboto", sans-serif;
       color: black;
+      text-align: center;
 
       display: inline-block;
       border-radius: 4px;

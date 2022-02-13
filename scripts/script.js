@@ -26,15 +26,6 @@ let indexOfLstMsg = null;
 
 btnInit();
 
-function secondScreen() {
-  const loginScreen = document.querySelector(".login-screen");
-  const secondScreen = Array.from(document.querySelectorAll(".hidden"));
-
-  loginScreen.classList.add("hidden");
-  secondScreen.forEach((element) => {
-    element.classList.remove("hidden");
-  });
-}
 function btnInit() {
   loginBtn.addEventListener("click", () => {
     postUser();
@@ -65,6 +56,15 @@ function btnInit() {
     }
   });
 }
+function secondScreen() {
+  const loginScreen = document.querySelector(".login-screen");
+  const secondScreen = Array.from(document.querySelectorAll(".hidden"));
+
+  loginScreen.classList.add("hidden");
+  secondScreen.forEach((element) => {
+    element.classList.remove("hidden");
+  });
+}
 function postUser() {
   username.name = document.querySelector(
     ".login-screen__container input"
@@ -77,12 +77,11 @@ function postUser() {
   request.then(responseProcess);
   request.catch(errorProcess);
 }
-function responseProcess(response) {
-  console.log(`STATUS CODE: ${response}`);
-
+function responseProcess() {
   secondScreen();
   getData();
   loadUpdate();
+  getOnlineUsers();
   setInterval(getOnlineUsers, 10000);
   setInterval(statusUpdate, 5000);
 }
@@ -215,6 +214,31 @@ function listOnlineUsers(response) {
   let nUserNames = [];
   onlineUsers = response.data;
 
+  const contactSelection = document.getElementById("contact-selection");
+  contactSelection.innerHTML = `
+    <div class="opt">
+      <ion-icon name="people"></ion-icon>
+      <p>Todos</p>
+    </div>
+  `;
+
+  onlineUsers.forEach((element) => {
+    const usersCollection = document.querySelectorAll(
+      "#contact-selection .opt"
+    );
+    const index = usersCollection.length - 1;
+
+    usersCollection[index].insertAdjacentHTML(
+      "afterend",
+      `
+        <div class="opt">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <p>${element.name}</p>
+        </div>
+      `
+    );
+  });
+
   for (let i = 0; i < onlineUsers.length; i++) {
     nUserNames.push(onlineUsers[i].name);
   }
@@ -223,12 +247,12 @@ function listOnlineUsers(response) {
     CURRENTLY ONLINE: ${onlineUsers.length}, 
     ${nUserNames}`);
 }
-/* function selectUser() {
+function selectUser(element) {
   if (!selectedUser){
-
-    selectedUser = ;   
-  } 
-} */
+    selectedUser = element;
+    element.classList.add('selected');
+  }
+} 
 const LOADMESSAGES = (element) => {
   const msgCollection = document.querySelectorAll("main p");
   const index = msgCollection.length - 1;
