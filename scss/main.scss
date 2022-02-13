@@ -183,6 +183,9 @@ section {
 *.hidden {
   display: none !important;
 }
+.selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 .login-screen {
   display: flex;
   justify-content: space-between;
@@ -239,6 +242,7 @@ section {
   font-size: 30px;
   text-shadow: -1px 0px rgb(0, 0, 0);
 }
+/*CSS below referenced at: https://stackoverflow.com/questions/15215556/create-a-beautiful-horizontal-line-with-css-only*/
 hr.fancy-line {
   border: 0;
   height: 1px;

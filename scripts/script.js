@@ -14,6 +14,8 @@ const userInputMsg = {
   text: "",
   type: "",
 };
+let selectedUser = null;
+let selectedVisibility = null;
 let allMessages = [];
 let newMessages = [];
 let onlineUsers = [];
@@ -221,6 +223,12 @@ function listOnlineUsers(response) {
     CURRENTLY ONLINE: ${onlineUsers.length}, 
     ${nUserNames}`);
 }
+/* function selectUser() {
+  if (!selectedUser){
+
+    selectedUser = ;   
+  } 
+} */
 const LOADMESSAGES = (element) => {
   const msgCollection = document.querySelectorAll("main p");
   const index = msgCollection.length - 1;
