@@ -1,4 +1,5 @@
-const sidebar = document.querySelector("aside");
+const sidebarContainer = document.querySelector("aside");
+const sidebar = document.querySelector(".sidebar");
 const loginBtn = document.getElementById("login-btn");
 const openSidebarBtn = document.getElementById("sidebar-btn");
 const closeSidebarBtn = document.getElementById("close-btn");
@@ -38,12 +39,12 @@ function btnInit() {
   });
   openSidebarBtn.addEventListener("click", () => {
     if (!openSidebarBtn.classList.contains("disabled")) {
-      openSidebar();
+      toggleSidebar(true);
       toggleDisable(openSidebarBtn);
     }
   });
   closeSidebarBtn.addEventListener("click", () => {
-    closeSidebar();
+    toggleSidebar(false);
     toggleDisable(openSidebarBtn);
   });
   postMessageBtn.addEventListener("click", () => {
@@ -101,13 +102,14 @@ function errorProcess(error) {
     Por favor insira outro nome
   `);
 }
-function openSidebar() {
-  sidebar.style.width = "70vw";
-  document.body.style.backgroundColor = "rgba(0,0,0,.6)";
-}
-function closeSidebar() {
-  sidebar.style.width = "0";
-  document.body.style.backgroundColor = "rgba(243, 243, 243, 1)";
+function toggleSidebar(value) {
+  if (value) {
+    sidebarContainer.style.width = "100vw";
+    sidebar.style.width = "70%";
+  } else {
+    sidebarContainer.style.width = "0";
+    sidebar.style.width = "0";
+  }
 }
 function toggleDisable(element) {
   element.classList.toggle("disabled");

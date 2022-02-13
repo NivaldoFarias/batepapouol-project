@@ -38,25 +38,58 @@
     </div>
     <header class="hidden">
       <img src="/dist/img/batepapooul-logo.png" alt="Logo Bate Papo UOL" />
-      <ion-icon name="people" id="sidebar-btn" class="disabled"></ion-icon>
+      <ion-icon name="people" id="sidebar-btn"></ion-icon>
     </header>
     <main class="hidden"></main>
     <aside class="hidden">
-      <a href="javascript:void(0)" id="close-btn">&times;</a>
-      <p>Escolha um contato para enviar mensagem:</p>
-      <section class="contact-selection">
-        <div class="opt">Todos</div>
-        <div class="opt">João</div>
-        <div class="opt">Maria</div>
-      </section>
-      <p>Escolha a visibilidade:</p>
-      <section class="visibility-selection">
-        <div class="opt">Público</div>
-        <div class="opt">Privado</div>
-      </section>
+      <div id="close-btn">
+        <p>&rang;</p>
+        <p>&rang;</p>
+        <p>&rang;</p>
+      </div>
+      <div class="sidebar">
+        <p>Escolha um contato para enviar mensagem:</p>
+        <hr class="fancy-line"></hr>
+        <section id="contact-selection">
+          <div class="opt">
+            <ion-icon name="people"></ion-icon>
+            <p>Todos</p>
+          </div>
+          <div class="opt">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <p>João</p>
+          </div>
+          <div class="opt">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <p>Maria</p>
+          </div>
+        </section>
+        <hr class="fancy-line"></hr>
+        <p>Escolha a visibilidade:</p>
+        <hr class="fancy-line"></hr>
+        <section id="visibility-selection">
+          <div class="opt">
+            <ion-icon name="lock-open"></ion-icon>
+            <p>Público</p>
+          </div>
+          <div class="opt">
+            <ion-icon name="lock-closed"></ion-icon>
+            <p>Privado</p>
+          </div>
+        </section>
+      </div>
     </aside>
     <footer class="hidden">
-      <input maxlength="20" autocomplete="off" id="enter-key-message" type="text" placeholder="Escreva aqui..." name="fname" required/>
+      <input
+        autofocus
+        maxlength="40"
+        autocomplete="off"
+        id="enter-key-message"
+        type="text"
+        placeholder="Escreva aqui..."
+        name="fname"
+        required
+      />
       <ion-icon name="paper-plane-outline" id="post-message-btn"></ion-icon>
     </footer>
 

@@ -144,29 +144,70 @@ aside {
   right: 0;
   height: 100%;
   width: 0;
-  padding-top: 60px;
+  overflow-x: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+section {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.sidebar {
+  position: fixed;
+  z-index: 6;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 0;
+  padding-top: 15px;
   overflow-x: hidden;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   background-color: white;
 }
 
-aside .opt {
-  display: block;
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 14px;
-  color: #818181;
+.sidebar > p {
+  font-weight: bold;
+  text-align: center;
+}
+
+.opt {
+  width: 100%;
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 18px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-aside #close-btn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  margin-left: 50px;
-  font-size: 36px;
+.opt ion-icon {
+  font-size: 23px;
+  margin-right: 8px;
+}
+
+.opt p {
+  margin-top: 4px;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 *.hidden {
@@ -233,11 +274,51 @@ aside #close-btn {
   color: white;
 }
 
-@media screen and (max-height: 450px) {
-  aside {
-    padding-top: 15px;
-  }
-  aside .iot {
-    font-size: 18px;
-  }
+#close-btn {
+  position: absolute;
+  top: 47vh;
+  right: 78vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 30px;
+  text-shadow: -1px 0px black;
+}
+
+hr.fancy-line {
+  border: 0;
+  height: 1px;
+  position: relative;
+  margin: 0.6em 0;
+  /* Keep other elements away from pseudo elements*/
+}
+
+hr.fancy-line:before {
+  top: -0.5em;
+  height: 1em;
+}
+
+hr.fancy-line:after {
+  content: "";
+  height: 0.5em;
+  /* half the height of :before */
+  top: 1px;
+  /* height of hr*/
+}
+
+hr.fancy-line:before,
+hr.fancy-line:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+}
+
+hr.fancy-line,
+hr.fancy-line:before {
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 75%);
+}
+
+body,
+hr.fancy-line:after {
+  background: #f4f4f4;
 }
