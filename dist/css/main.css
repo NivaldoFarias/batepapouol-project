@@ -116,7 +116,7 @@ footer {
 
 footer .input-container {
   height: 100%;
-  width: auto;
+  width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -135,10 +135,11 @@ footer .input-container {
 footer input[type="text"] {
   width: inherit;
   font-family: "Roboto", sans-serif;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 400;
   font-style: italic;
   display: inline-block;
+  white-space: nowrap;
   border: none;
 }
 

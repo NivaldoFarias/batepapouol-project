@@ -341,8 +341,7 @@ const LOADMESSAGES = (element) => {
   } else if (
     element.type === "private_message" &&
     (element.to === username ||
-      element.to === userInputMsg.to ||
-      element.to === "Todos")
+      element.to === userInputMsg.to)
   ) {
     msgCollection[index].insertAdjacentHTML(
       "afterend",
