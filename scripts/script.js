@@ -84,6 +84,7 @@ function responseProcess() {
   getData();
   loadUpdate();
   getOnlineUsers();
+  btnInitVisibility();
   setInterval(getOnlineUsers, 10000);
   setInterval(statusUpdate, 5000);
 }
@@ -212,6 +213,7 @@ function postMessage() {
 function updateMessageProcess() {
   console.log(`MESSAGE SENT`);
   document.querySelector("footer input").value = "";
+  getData();
 }
 function getOnlineUsers() {
   const request = axios.get(
@@ -249,15 +251,17 @@ function listOnlineUsers(response) {
       `
     );
   });
-  BtnInitContactsAndVis();
+  btnInitContacts();
 }
-function BtnInitContactsAndVis() {
+function btnInitContacts() {
   contactOptions = document.querySelectorAll("#contact-selection .opt");
   contactOptions.forEach((element) => {
     element.addEventListener("click", () => {
       selectUser(element);
     });
   });
+}
+function btnInitVisibility(){
   visibilityOptions = document.querySelectorAll("#visibility-selection .opt");
   visibilityOptions.forEach((element) => {
     element.addEventListener("click", () => {
