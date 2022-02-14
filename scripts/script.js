@@ -7,6 +7,7 @@ const postMessageBtn = document.getElementById("post-message-btn");
 const loginEnterKey = document.getElementById("enter-key-login");
 const messageEnterKey = document.getElementById("enter-key-message");
 const mainGen = document.querySelector("main");
+const inputRef = document.querySelector(".input-container p");
 const username = { name: null };
 const userInputMsg = {
   from: "",
@@ -189,19 +190,7 @@ function loadUpdate() {
   interval = setInterval(getData, 3000);
 }
 function postMessage() {
-  userInputMsg.text = document.querySelector("footer input").value;
-  userInputMsg.from = username.name;
-  userInputMsg.to = selectedUser.children[1].innerHTML;
-  if (
-    selectedVisibility.children[1].innerHTML === "Privado" &&
-    userInputMsg.to !== "Todos"
-  ) {
-    userInputMsg.type = "private_message";
-    userInputMsg.to = `${selectedUser.children[1].innerHTML}`;
-  } else {
-    userInputMsg.type = "message";
-    userInputMsg.to = "Todos";
-  }
+  loadMessage();
 
   const request = axios.post(
     "https://mock-api.driven.com.br/api/v4/uol/messages",
@@ -209,6 +198,24 @@ function postMessage() {
   );
   request.then(updateMessageProcess);
   request.catch(errorProcess);
+}
+function loadMessage() {
+  userInputMsg.text = document.querySelector("footer input").value;
+  userInputMsg.from = username.name;
+
+  if (
+    selectedUser !== null &&
+    selectedVisibility !== null &&
+    selectedUser.children[1].innerHTML !== "Todos" &&
+    selectedVisibility.children[1].innerHTML === "Privado"
+  ) {
+    userInputMsg.type = "private_message";
+    userInputMsg.to = `${selectedUser.children[1].innerHTML}`;
+  } else {
+    userInputMsg.type = "message";
+    userInputMsg.to = "Todos";
+  }
+  updateInputContainer();
 }
 function updateMessageProcess() {
   console.log(`MESSAGE SENT`);
@@ -225,14 +232,14 @@ function getOnlineUsers() {
 }
 function listOnlineUsers(response) {
   const contactSelection = document.getElementById("contact-selection");
+  onlineUsers = response.data;
   contactSelection.innerHTML = `
     <div class="opt">
       <ion-icon name="people"></ion-icon>
       <p>Todos</p>
-      <span class="hidden-absolute">&#10003;</span>
+      <span id="online-users-tracker">${onlineUsers.length} online</span>
     </div>
   `;
-  onlineUsers = response.data;
 
   onlineUsers.forEach((element) => {
     const usersCollection = document.querySelectorAll(
@@ -261,7 +268,7 @@ function btnInitContacts() {
     });
   });
 }
-function btnInitVisibility(){
+function btnInitVisibility() {
   visibilityOptions = document.querySelectorAll("#visibility-selection .opt");
   visibilityOptions.forEach((element) => {
     element.addEventListener("click", () => {
@@ -281,6 +288,9 @@ function selectUser(element) {
     selectedUser = element;
     toggleSelect(element);
   }
+  if (selectedVisibility !== null && selectedUser !== null) {
+    loadMessage();
+  }
 }
 function toggleSelect(element) {
   element.classList.toggle("selected");
@@ -297,6 +307,20 @@ function selectVisibility(element) {
     selectedVisibility = element;
     toggleSelect(element);
   }
+
+  if (selectedVisibility !== null && selectedUser !== null) {
+    loadMessage();
+  }
+}
+function updateInputContainer() {
+  let inputType = null;
+
+  if (userInputMsg.to === "Todos") {
+    inputType = `publicamente`;
+  } else {
+    inputType = `reservadamente`;
+  }
+  inputRef.innerHTML = `Enviando para ${userInputMsg.to} (${inputType})`;
 }
 const LOADMESSAGES = (element) => {
   const msgCollection = document.querySelectorAll("main p");

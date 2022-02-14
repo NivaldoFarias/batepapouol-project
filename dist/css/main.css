@@ -106,13 +106,10 @@ footer {
   z-index: 1;
   height: 12%;
   width: 100%;
-  padding: 2% 8%;
+  padding: 2% 6%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -121,20 +118,42 @@ footer {
           box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
 }
 
+footer .input-container {
+  height: 100%;
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
 footer input[type="text"] {
-  padding: 12px 0;
-  width: 80%;
+  width: inherit;
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 400;
   font-style: italic;
-  color: black;
   display: inline-block;
   border: none;
 }
 
 footer ion-icon {
   font-size: 35px;
+}
+
+footer p {
+  font-size: 14px;
+  font-weight: 300;
+  color: #a3a3a3;
 }
 
 aside {
@@ -250,14 +269,14 @@ span {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 15% 10% 35% 10%;
+  padding: 20% 10% 75% 10%;
   margin: 17% 0;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 .login-screen img {
-  width: 60%;
+  width: 180px;
 }
 
 .login-screen__container {
@@ -271,12 +290,12 @@ span {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 50px;
 }
 
 .login-screen__container input[type="text"] {
   padding: 12px 20px;
   margin: 8px 0;
+  height: 45px;
   width: 100%;
   font-family: "Roboto", sans-serif;
   color: black;
@@ -289,12 +308,24 @@ span {
 .login-screen__container button {
   padding: 14px 20px;
   margin: 8px 0;
-  width: 50%;
+  height: 40px;
+  width: 80px;
   border: none;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: dimgray;
   border-radius: 4px;
-  background-color: #a3a3a3;
-  color: white;
+  -webkit-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.45);
+          box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.45);
+  background-color: #e7e7e7;
 }
 
 #close-btn {
@@ -306,6 +337,15 @@ span {
   display: flex;
   font-size: 30px;
   text-shadow: -1px 0px black;
+}
+
+#online-users-tracker {
+  display: initial !important;
+  top: 9px;
+  right: 15px;
+  font-size: 13px;
+  font-weight: 300;
+  font-style: italic;
 }
 
 /*CSS below referenced at: https://stackoverflow.com/questions/15215556/create-a-beautiful-horizontal-line-with-css-only*/
