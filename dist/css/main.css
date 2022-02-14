@@ -324,13 +324,19 @@ ion-icon {
 }
 
 #close-btn {
+  position: relative;
+  height: 100%;
+  width: 30vw;
+}
+
+#close-btn div {
   position: absolute;
-  top: 47vh;
-  right: 78vw;
+  top: 47%;
+  right: 29%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 30px;
+  font-size: 33px;
   text-shadow: -1px 0px black;
 }
 

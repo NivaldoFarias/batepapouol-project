@@ -266,13 +266,19 @@ ion-icon {
   }
 }
 #close-btn {
-  position: absolute;
-  top: 47vh;
-  right: 78vw;
+  position: relative;
+  height: 100%;
+  width: 30vw;
 
-  display: flex;
-  font-size: 30px;
-  text-shadow: -1px 0px rgb(0, 0, 0);
+  div {
+    position: absolute;
+    top: 47%;
+    right: 29%;
+  
+    display: flex;
+    font-size: 33px;
+    text-shadow: -1px 0px rgb(0, 0, 0)
+  }
 }
 #online-users-tracker {
   display: initial !important;
