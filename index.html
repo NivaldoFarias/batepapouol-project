@@ -26,6 +26,7 @@
 
       <div class="login-screen__container">
         <input
+          data-identifier="enter-name"
           autocomplete="off"
           id="enter-key-login"
           type="text"
@@ -33,7 +34,7 @@
           name="fname"
           required
         />
-        <button id="login-btn">Entrar</button>
+        <button id="login-btn" data-identifier="start">Entrar</button>
       </div>
     </div>
     <header class="hidden">
@@ -55,12 +56,12 @@
         <p>Escolha a visibilidade:</p>
         <hr class="fancy-line"></hr>
         <section id="visibility-selection">
-          <div class="opt">
+          <div class="opt" data-identifier="visibility">
             <ion-icon name="lock-open"></ion-icon>
             <p>Público</p>
             <span class="hidden-absolute">&#10003;</span>
           </div>
-          <div class="opt">
+          <div class="opt" data-identifier="visibility">
             <ion-icon name="lock-closed"></ion-icon>
             <p>Privado</p>
             <span class="hidden-absolute">&#10003;</span>
@@ -79,7 +80,7 @@
         name="fname"
         required
       />
-      <ion-icon name="paper-plane-outline" id="post-message-btn"></ion-icon>
+      <ion-icon name="paper-plane-outline" id="post-message-btn" data-identifier="send-message"></ion-icon>
     </footer>
 
     <script

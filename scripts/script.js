@@ -138,13 +138,13 @@ function renderMessages() {
         </p>`;
     } else if (allMessages[0].type === "private_message") {
       mainGen.innerHTML = `
-        <p class="user-${allMessages[0].type}">
+        <p class="user-${allMessages[0].type}" data-identifier="message">
           <span>(${allMessages[0].time})</span> <strong>${allMessages[0].from}</strong> reservadamente para
           <strong>${allMessages[0].to}</strong>: ${allMessages[0].text}
         </p>`;
     } else if (allMessages[0].type === "message") {
       mainGen.innerHTML = `
-        <p class="user-${allMessages[0].type}">
+        <p class="user-${allMessages[0].type}" data-identifier="message">
           <span>(${allMessages[0].time})</span> <strong>${allMessages[0].from}</strong> para
           <strong>${allMessages[0].to}</strong>: ${allMessages[0].text}
         </p>`;
@@ -190,7 +190,11 @@ function loadUpdate() {
 function postMessage() {
   userInputMsg.text = document.querySelector("footer input").value;
   userInputMsg.from = username.name;
-  if (selectedVisibility.children[1].innerHTML === "Privado") {
+  userInputMsg.to = selectedUser.children[1].innerHTML;
+  if (
+    selectedVisibility.children[1].innerHTML === "Privado" &&
+    userInputMsg.to !== "Todos"
+  ) {
     userInputMsg.type = "private_message";
     userInputMsg.to = `${selectedUser.children[1].innerHTML}`;
   } else {
@@ -237,7 +241,7 @@ function listOnlineUsers(response) {
     usersCollection[index].insertAdjacentHTML(
       "afterend",
       `
-        <div class="opt">
+        <div class="opt" data-identifier="participant">
           <ion-icon name="person-circle-outline"></ion-icon>
           <p>${element.name}</p>
           <span class="hidden-absolute">&#10003;</span>
@@ -303,11 +307,16 @@ const LOADMESSAGES = (element) => {
           <strong>${element.from}</strong> ${element.text}
         </p>`
     );
-  } else if (element.type === "private_message") {
+  } else if (
+    element.type === "private_message" &&
+    (element.to === username ||
+      element.to === userInputMsg.to ||
+      element.to === "Todos")
+  ) {
     msgCollection[index].insertAdjacentHTML(
       "afterend",
       `
-        <p class="user-${element.type}">
+        <p class="user-${element.type}" data-identifier="message">
           <span>(${element.time})</span> <strong>${element.from}</strong> reservadamente para
           <strong>${element.to}</strong>: ${element.text}
         </p>`
@@ -316,7 +325,7 @@ const LOADMESSAGES = (element) => {
     msgCollection[index].insertAdjacentHTML(
       "afterend",
       `
-        <p class="user-${element.type}">
+        <p class="user-${element.type}" data-identifier="message">
           <span>(${element.time})</span> <strong>${element.from}</strong> para
           <strong>${element.to}</strong>: ${element.text}
         </p>`
