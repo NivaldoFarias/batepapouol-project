@@ -19,6 +19,7 @@ let newMessages = [];
 let onlineUsers = [];
 let firstLoad = true;
 let contactOptions = null;
+let visibilityOptions = null;
 let selectedUser = null;
 let selectedVisibility = null;
 let interval = null;
@@ -239,13 +240,19 @@ function listOnlineUsers(response) {
       `
     );
   });
-  BtnInitContacts();
+  BtnInitContactsAndVis();
 }
-function BtnInitContacts() {
+function BtnInitContactsAndVis() {
   contactOptions = document.querySelectorAll("#contact-selection .opt");
   contactOptions.forEach((element) => {
     element.addEventListener("click", () => {
       selectUser(element);
+    });
+  });
+  visibilityOptions = document.querySelectorAll("#visibility-selection .opt");
+  visibilityOptions.forEach((element) => {
+    element.addEventListener("click", () => {
+      selectVisibility(element);
     });
   });
 }
@@ -263,7 +270,20 @@ function selectUser(element) {
   }
 }
 function toggleSelect(element) {
-  element.classList.toggle('selected');
+  element.classList.toggle("selected");
+}
+function selectVisibility(element) {
+  if (!selectedVisibility) {
+    selectedVisibility = element;
+    toggleSelect(element);
+  } else if (selectedVisibility == element) {
+    selectedVisibility = null;
+    toggleSelect(element);
+  } else {
+    toggleSelect(selectedVisibility);
+    selectedVisibility = element;
+    toggleSelect(element);
+  }
 }
 const LOADMESSAGES = (element) => {
   const msgCollection = document.querySelectorAll("main p");
