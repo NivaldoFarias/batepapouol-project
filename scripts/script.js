@@ -190,8 +190,13 @@ function loadUpdate() {
 function postMessage() {
   userInputMsg.text = document.querySelector("footer input").value;
   userInputMsg.from = username.name;
-  userInputMsg.to = "Todos";
-  userInputMsg.type = "message";
+  if (selectedVisibility.children[1].innerHTML === "Privado") {
+    userInputMsg.type = "private_message";
+    userInputMsg.to = `${selectedUser.children[1].innerHTML}`;
+  } else {
+    userInputMsg.type = "message";
+    userInputMsg.to = "Todos";
+  }
 
   const request = axios.post(
     "https://mock-api.driven.com.br/api/v4/uol/messages",
