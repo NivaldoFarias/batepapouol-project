@@ -37,7 +37,7 @@
 
 <!-- ABOUT THE PROJECT -->
 
-![Banner](https://github.com/NivaldoFarias/projeto4-parrotcardgame/blob/main/dist/img/screenshots-showroom.png?raw=true)
+![Banner](https://github.com/NivaldoFarias/projeto4-parrotcardgame/blob/main/dist/img/screenshots-showroom2.png?raw=true)
 
 ## Requirements
 
