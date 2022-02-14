@@ -7,8 +7,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -39,29 +37,38 @@
 
 <!-- ABOUT THE PROJECT -->
 
-<!-- ## Requirements
-   - General
-      - [x] Vanilla JS only
-      - [x] Github public Repository
-      - [x] Commit every requirement
-   - Layout
-      - [x] Mobile and Desktop mobile
-   - Card Distribution
-      - [x] Prompt user for number of cards
-      - [x] Keep Prompt until input is a even number between 4 and 14
-      - [x] Print cards randomly
-   - Card Interaction
-      - [x] Turn card on click
-      - [x] If turned card is the first of a pair, keep card front-face up until next card is turned
-      - [x] When second card is turned, thera are two options:
-        - [x] If it is the first card's pair, both cards must stay turned until tha game has ended
-        - [x] If it is not the pair, game must wait 1 second, then turn both cards down
-      - [x] Use 3D animation for all cards flip
-   - End of the game
-      - [x] When all cards are matched, use alert() and show number of total flips 
-   - Bonus
-     - [x] On-screen timer, stops at the end of the game
-     - [x] After the game has ended, prompt user for reset -->
+## Requirements
+
+- General
+  - [x] Vanilla JS only
+  - [x] Github public Repository
+  - [x] Commit every requirement
+- Layout
+  - [x] Mobile layout structured using given template
+- Chat
+  - [x] Upon login, messages must be rendered as in template
+  - [x] All message types must have their own unique color and text set
+  - [x] Reload messages every 3 seconds
+  - [x] Chat auto-scroll if new messages have arrived
+  - [x] Private messages must only be viewed by user if he is either the sender or recipient
+- Chatroom entry
+  - [x] Upon page-load, user must be prompted for username
+  - [x] After user input user, username must be registered on server only if it is unique. Otherwise, keep prompting user for username
+  - [x] While user is connected, the page must warn server that the user is online every 5 seconds
+- Message sending
+  - [x] After sending a message, it must be sent to server
+    - [x] If server response is an OK, must load new messages and update chat
+    - [x] If server resolves is an ERROR, recipient has logged off and page should reload
+  - [x] The recipient, sender and type of message must be informed. If type if a private message, it must be sent only to recipient
+- Bonus (optional)
+  - [x] Active users
+    - [x] Upon clicking the upper-right icon, sidebar must open as page overlay, with semi-transparent background
+    - [x] Upon clicking the background, sidebar must close
+    - [x] Page must update active users every 10 seconds
+    - [x] Upon clicking on a user or a visibility option, selected item must be check-marked
+    - [x] After every parameter selection change, text below input message must also change
+  - [x] Login screen base on template
+  - [x] Message sending on Enter-key
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
@@ -74,25 +81,27 @@
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 
-
-
 <!-- Study Playlist -->
+
 ### Study Playlist
 
-In this section I included all Youtube content I used or refered to while studying for this project. Keep in mind that most of these videos contain information that was not previously studied during class, which may affect some parts of the code that contain these _extras_. 
+In this section I included all Youtube content I used or refered to while studying for this project. Keep in mind that most of these videos contain information that was not previously studied during class, which may affect some parts of the code that contain these _extras_.
 
 <a href="https://youtube.com/playlist?list=PLoZj33I2-ANTWqU331l3ZGlZV8I7rr5ZN">![Youtube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)</a>
 
 <!-- CONTACT -->
+
 ### Contact
 
-[![LinkedIn][linkedin-shield]][linkedin-url] 
+[![LinkedIn][linkedin-shield]][linkedin-url]
 [![Slack][slack-shield]][slack-url]
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=blue
 [linkedin-url]: https://www.linkedin.com/in/nivaldofarias/
 [slack-shield]: https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white
 [slack-url]: https://driventurmas.slack.com/team/U02T6V2D8D8/
+
 <!-- [product-screenshot]: images/screenshot.png -->
