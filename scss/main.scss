@@ -159,6 +159,7 @@ section {
   }
 }
 .opt {
+  position: relative;
   width: 100%;
   height: 30px;
 
@@ -179,13 +180,18 @@ section {
     font-weight: 400;
     font-size: 14px;
   }
+  span {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+  }
 }
 *.hidden {
   display: none !important;
 }
 *.selected {
   background-color: rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
+  transition: 250ms;
 }
 .login-screen {
   display: flex;
@@ -234,6 +240,10 @@ section {
       color: white;
     }
   }
+}
+.hidden-absolute {
+  //check-mark only
+  display: none;
 }
 #close-btn {
   position: absolute;
