@@ -165,6 +165,11 @@ section {
           flex-direction: column;
 }
 
+span {
+  display: none;
+  font-size: 23px;
+}
+
 .sidebar {
   position: fixed;
   z-index: 6;
@@ -227,6 +232,10 @@ section {
   transition: 250ms;
 }
 
+*.selected span {
+  display: initial !important;
+}
+
 .login-screen {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -286,10 +295,6 @@ section {
   border-radius: 4px;
   background-color: #a3a3a3;
   color: white;
-}
-
-.hidden-absolute {
-  display: none;
 }
 
 #close-btn {

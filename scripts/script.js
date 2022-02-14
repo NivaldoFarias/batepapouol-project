@@ -17,9 +17,7 @@ const userInputMsg = {
 let allMessages = [];
 let newMessages = [];
 let onlineUsers = [];
-let newArray = [];
 let firstLoad = true;
-let firstList = true;
 let contactOptions = null;
 let selectedUser = null;
 let selectedVisibility = null;
@@ -214,44 +212,33 @@ function getOnlineUsers() {
   request.catch(errorProcess);
 }
 function listOnlineUsers(response) {
+  const contactSelection = document.getElementById("contact-selection");
+  contactSelection.innerHTML = `
+    <div class="opt">
+      <ion-icon name="people"></ion-icon>
+      <p>Todos</p>
+      <span class="hidden-absolute">&#10003;</span>
+    </div>
+  `;
   onlineUsers = response.data;
 
-  if (firstList) {
-    const contactSelection = document.getElementById("contact-selection");
+  onlineUsers.forEach((element) => {
+    const usersCollection = document.querySelectorAll(
+      "#contact-selection .opt"
+    );
+    const index = usersCollection.length - 1;
 
-    contactSelection.innerHTML = `
-      <div class="opt">
-        <ion-icon name="people"></ion-icon>
-        <p>Todos</p>
-        <span class="hidden-absolute">&#10003;</span>
-      </div>
-    `;
-    onlineUsers.forEach((element) => {
-      const usersCollection = document.querySelectorAll(
-        "#contact-selection .opt"
-      );
-      const index = usersCollection.length - 1;
-
-      usersCollection[index].insertAdjacentHTML(
-        "afterend",
-        `
-          <div class="opt">
-            <ion-icon name="person-circle-outline"></ion-icon>
-            <p>${element.name}</p>
-            <span class="hidden-absolute">&#10003;</span>
-          </div>
-        `
-      );
-    });
-
-    firstList = false;
-  } else {
-    filterUsers();
-
-    console.log(`LIST OF USERS LOADED SUCCESSFULLY
-      CURRENTLY ONLINE: ${onlineUsers.length}, 
-      ${newArray}`);
-  }
+    usersCollection[index].insertAdjacentHTML(
+      "afterend",
+      `
+        <div class="opt">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <p>${element.name}</p>
+          <span class="hidden-absolute">&#10003;</span>
+        </div>
+      `
+    );
+  });
   BtnInitContacts();
 }
 function BtnInitContacts() {
@@ -276,69 +263,7 @@ function selectUser(element) {
   }
 }
 function toggleSelect(element) {
-  if (element.classList.contains("selected")) {
-    console.log(`CONTAINS`);
-    const checkMark = document.querySelector(".selected span");
-    checkMark.classList.add("hidden-absolute");
-    element.classList.remove("selected");
-  } else {
-    console.log(`DOES NOT CONTAIN`);
-    element.classList.add("selected");
-    const checkMark = document.querySelector(".selected span");
-    checkMark.classList.remove("hidden-absolute");
-  }
-}
-function filterUsers() {
-  newArray = [];
-  contactOptions = Array.from(
-    document.querySelectorAll("#contact-selection p")
-  );
-
-  contactOptions.forEach((element) => (element = element.innerHTML));
-  onlineUsers.forEach((element) => newArray.push(element));
-
-  let filteredUsersRemove = contactOptions.filter(
-    (element) => !newArray.includes(element)
-  );
-  let filteredUsersAdd = newArray.filter(
-    (element) => !contactOptions.includes(element)
-  );
-  renderNewList(filteredUsersAdd, filteredUsersRemove);
-}
-function renderNewList(addUsers, removeUsers) {
-  console.log(`
-    ADD: ${addUsers}
-    REMOVE: ${removeUsers}
-  `);
-
-  addUsers.forEach((element) => {
-    const usersCollection = document.querySelectorAll(
-      "#contact-selection .opt"
-    );
-    const index = usersCollection.length - 1;
-
-    usersCollection[index].insertAdjacentHTML(
-      "afterend",
-      `
-        <div class="opt">
-          <ion-icon name="person-circle-outline"></ion-icon>
-          <p>${element.innerHTML}</p>
-          <span class="hidden-absolute">&#10003;</span>
-        </div>
-      `
-    );
-  });
-  removeUsers.forEach((element) => {
-    const usersCollection = document.querySelectorAll(
-      "#contact-selection .opt"
-    );
-
-    for (let i = 0; i < usersCollection.length; i++) {
-      if (usersCollection[i].innerHTML === element) {
-        usersCollection[i].remove();
-      }
-    }
-  });
+  element.classList.toggle('selected');
 }
 const LOADMESSAGES = (element) => {
   const msgCollection = document.querySelectorAll("main p");

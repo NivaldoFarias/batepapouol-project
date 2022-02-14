@@ -139,6 +139,11 @@ section {
   align-items: center;
   flex-direction: column;
 }
+span {
+  display: none;
+
+  font-size: 23px;
+}
 .sidebar {
   position: fixed;
   z-index: 6;
@@ -192,6 +197,10 @@ section {
 *.selected {
   background-color: rgba(0, 0, 0, 0.1);
   transition: 250ms;
+
+  span {
+    display: initial !important;
+  }
 }
 .login-screen {
   display: flex;
@@ -241,10 +250,7 @@ section {
     }
   }
 }
-.hidden-absolute {
-  //check-mark only
-  display: none;
-}
+
 #close-btn {
   position: absolute;
   top: 47vh;
