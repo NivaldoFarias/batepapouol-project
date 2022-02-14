@@ -23,7 +23,7 @@ header {
   z-index: 1;
   height: 12%;
   width: 100%;
-  padding: 2% 8%;
+  padding: 2% 6%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -34,17 +34,13 @@ header {
       -ms-flex-align: center;
           align-items: center;
   background-color: rgba(255, 255, 255, 0.97);
-  -webkit-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
-          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 header img {
   width: 23%;
   width: 23%;
-}
-
-header ion-icon {
-  font-size: 45px;
 }
 
 main {
@@ -114,8 +110,8 @@ footer {
       -ms-flex-align: center;
           align-items: center;
   background-color: rgba(255, 255, 255, 0.97);
-  -webkit-box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
-          box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.2);
 }
 
 footer .input-container {
@@ -144,10 +140,6 @@ footer input[type="text"] {
   font-style: italic;
   display: inline-block;
   border: none;
-}
-
-footer ion-icon {
-  font-size: 35px;
 }
 
 footer p {
@@ -187,6 +179,10 @@ section {
 span {
   display: none;
   font-size: 23px;
+}
+
+ion-icon {
+  font-size: 35px;
 }
 
 .sidebar {
@@ -269,8 +265,7 @@ span {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 20% 10% 75% 10%;
-  margin: 17% 0;
+  padding: 20% 10% 70% 10%;
   height: 100vh;
   width: 100vw;
 }
@@ -346,6 +341,10 @@ span {
   font-size: 13px;
   font-weight: 300;
   font-style: italic;
+}
+
+#visibility-selection {
+  margin-bottom: 10px;
 }
 
 /*CSS below referenced at: https://stackoverflow.com/questions/15215556/create-a-beautiful-horizontal-line-with-css-only*/

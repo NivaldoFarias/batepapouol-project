@@ -19,21 +19,18 @@ header {
 
   height: 12%;
   width: 100%;
-  padding: 2% 8%;
+  padding: 2% 6%;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   background-color: rgba(255, 255, 255, 0.97);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 
   img {
     width: 23%;
     width: 23%;
-  }
-  ion-icon {
-    font-size: 45px;
   }
 }
 main {
@@ -97,7 +94,7 @@ footer {
   align-items: center;
 
   background-color: rgba(255, 255, 255, 0.97);
-  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.2);
 
   .input-container {
     height: 100%;
@@ -109,7 +106,6 @@ footer {
     align-items: flex-start;
   }
   input[type="text"] {
-    
     width: inherit;
 
     font-family: "Roboto", sans-serif;
@@ -119,9 +115,6 @@ footer {
 
     display: inline-block;
     border: none;
-  }
-  ion-icon {
-    font-size: 35px;
   }
   p {
     font-size: 14px;
@@ -155,6 +148,9 @@ span {
   display: none;
 
   font-size: 23px;
+}
+ion-icon {
+  font-size: 35px;
 }
 .sidebar {
   position: fixed;
@@ -220,8 +216,7 @@ span {
   align-items: center;
   flex-direction: column;
 
-  padding: 20% 10% 75% 10%;
-  margin: 17% 0;
+  padding: 20% 10% 70% 10%;
 
   height: 100vh;
   width: 100vw;
@@ -258,12 +253,12 @@ span {
 
       border: none;
       cursor: pointer;
-      
+
       display: flex;
       justify-content: center;
       align-items: center;
       color: rgba(105, 105, 105, 1);
-      
+
       border-radius: 4px;
       box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.45);
       background-color: rgba(231, 231, 231, 1);
@@ -288,6 +283,9 @@ span {
   font-size: 13px;
   font-weight: 300;
   font-style: italic;
+}
+#visibility-selection {
+  margin-bottom: 10px;
 }
 /*CSS below referenced at: https://stackoverflow.com/questions/15215556/create-a-beautiful-horizontal-line-with-css-only*/
 hr.fancy-line {

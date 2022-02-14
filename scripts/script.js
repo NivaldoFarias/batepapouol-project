@@ -101,11 +101,14 @@ function updateResponseProcess() {
   console.log(`STATUS UPDATE SUCCESSFUL`);
 }
 function errorProcess(error) {
-  console.log(error);
-  alert(`
-        !!ERROR ${error}!!
-    Por favor insira outro nome
-  `);
+  if (error.response.status === 400) {
+    alert(`
+      Este nome já existe ou é inválido!
+      Por favor, tente novamente.`);
+  }
+  if (error.response.status === 404) {
+    alert(`ERRO 404`);
+  }
 }
 function toggleSidebar(value) {
   if (value) {
