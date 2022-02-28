@@ -24,7 +24,7 @@
   </a>
 
 <h3 align="center">UOL Chat Project</h3>
-  <h6 align="center">WIP</h6>
+<!--  <h6 align="center">WIP</h6> -->
   <p align="center">
     Web Development Project using HTML, SCSS and JS
     <br />
