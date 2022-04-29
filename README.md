@@ -19,7 +19,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/projeto3-driveneats">
+  <a href="https://github.com/NivaldoFarias/projeto5-batepapouol">
     <img src="https://github.com/NivaldoFarias/projeto5-batepapouol/blob/main/dist/img/logo-uol-icon-512.png" alt="Logo" width="150">
   </a>
 
